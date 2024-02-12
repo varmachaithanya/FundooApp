@@ -20,6 +20,11 @@ namespace BusinessLayer.Interfaces
 
         public object GetAllUsers();
 
-        public bool UserLogin(UserLoginModel user);
+        public string UserLogin(UserLoginModel user);
+
+        public ForgotPasswordModel ForgotPassword(string email);
+
+        public bool ResetPassword(string Email, ResetPasswordModel model);
+
     }
 }

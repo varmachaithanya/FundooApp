@@ -23,5 +23,8 @@ namespace ModelLayer
         [Required(ErrorMessage = "PASSWORD IS REQUIRED")]
         [RegularExpression(pattern: @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$", ErrorMessage = "Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character.")]
         public string Password { get; set; }
+
+        
+
     }
 }

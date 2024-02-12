@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RepositoryLayer;
 
@@ -11,9 +12,10 @@ using RepositoryLayer;
 namespace RepositoryLayer.Migrations
 {
     [DbContext(typeof(FundoContext))]
-    partial class FundoContextModelSnapshot : ModelSnapshot
+    [Migration("20240130113931_mig1")]
+    partial class mig1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,33 +23,6 @@ namespace RepositoryLayer.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("RepositoryLayer.Entities.Collaborator", b =>
-                {
-                    b.Property<long>("CollaboratorId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("CollaboratorId"), 1L, 1);
-
-                    b.Property<string>("CollaboratorEmail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("Noteid")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("Userid")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("CollaboratorId");
-
-                    b.HasIndex("Noteid");
-
-                    b.HasIndex("Userid");
-
-                    b.ToTable("Collaborators");
-                });
 
             modelBuilder.Entity("RepositoryLayer.Entities.Image", b =>
                 {
@@ -150,25 +125,6 @@ namespace RepositoryLayer.Migrations
                     b.HasKey("UsertId");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("RepositoryLayer.Entities.Collaborator", b =>
-                {
-                    b.HasOne("RepositoryLayer.Entities.Notes", "Notes")
-                        .WithMany()
-                        .HasForeignKey("Noteid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RepositoryLayer.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("Userid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Notes");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("RepositoryLayer.Entities.Image", b =>

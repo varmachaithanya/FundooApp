@@ -47,11 +47,22 @@ namespace BusinessLayer.Services
             return _repository.GetAllUsers();
         }
 
-        public bool UserLogin(UserLoginModel user)
+        public string UserLogin(UserLoginModel user)
         {
             return (_repository.UserLogin(user));
         }
+
+        public ForgotPasswordModel ForgotPassword(string email)
+        {
+            return (_repository.ForgotPassword(email));
+        }
+
+        public bool ResetPassword(string Email, ResetPasswordModel model)
+        {
+            return _repository.ResetPassword(Email,model);
+        }
+
     }
 
-  
+
 }
